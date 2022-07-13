@@ -4,7 +4,6 @@
 floor() / ceil()
 
 -- MEDIAN formula
-
 SELECT round(avg(ss.LAT_N),4)
 FROM
         (
@@ -13,3 +12,10 @@ FROM
         ORDER BY s.LAT_N
         ) as ss --builds a table with the ordered LAT_N and two additional columns, the last gives the total which is ging to be used to determine the 1/2 middle values
 WHERE ss.row_number IN (FLOOR(@total_rows+1)/2, CEIL(@total_rows+2)/2);
+
+--Easy use of Inner Join
+SELECT SUM(CITY.POPULATION)
+FROM CITY
+INNER JOIN COUNTRY
+ON CITY.CountryCode = COUNTRY.Code
+WHERE COUNTRY.CONTINENT = 'Asia'
