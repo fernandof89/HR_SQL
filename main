@@ -1,0 +1,15 @@
+--BEGINNING
+
+-- FLOOR Return the largest integer value that is less than or equal to num / CEIL Return the smallest integer value that is greater than or equal to num
+floor() / ceil()
+
+-- MEDIAN formula
+
+SELECT round(avg(ss.LAT_N),4)
+FROM
+        (
+        SELECT s.LAT_N, @rownum:=@rownum+1 as `row_number`, @total_rows:=@rownum
+        FROM STATION s, (SELECT @rownum:=0) r
+        ORDER BY s.LAT_N
+        ) as ss --builds a table with the ordered LAT_N and two additional columns, the last gives the total which is ging to be used to determine the 1/2 middle values
+WHERE ss.row_number IN (FLOOR(@total_rows+1)/2, CEIL(@total_rows+2)/2);
