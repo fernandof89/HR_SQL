@@ -39,3 +39,25 @@ GROUP BY h.hacker_id, h.name
 HAVING COUNT(h.hacker_id)>1
 ORDER BY COUNT(h.hacker_id) DESC, h.hacker_id 
 
+--Explanation of set and operators
+User defined variables start with @ in MYSQL.
+:= is an operator that does not require you to use the key word SET before it.
+Basically @number := @number - 1 is saying decrease the @number user variable each time it's printed out. In pseudocode it would be number = number - 1.
+
+--Article Stored Procedures: https://www.mysqltutorial.org/mysql-stored-procedure/mysql-repeat-loop/#:~:text=Code%20language%3A%20SQL%20%28Structured%20Query%20Language%29%20%28sql%29%20The,REPEAT%20is%20also%20known%20as%20a%20post-test%20loop.
+SELECT REPEAT("SQL Tutorial", 3);
+
+--The INFORMATION_SCHEMA.TABLES view allows you to get information about all tables and views within a database.
+
+--Joins and subquerues
+SELECT w.id, wp.age, w.coins_needed, w.power
+FROM Wands as w
+INNER JOIN Wands_property as wp
+USING(code)
+WHERE wp.is_evil = 0 AND w.coins_needed = (SELECT Min(w1.coins_needed) 
+                                            FROM Wands as w1
+                                            INNER JOIN Wands_property as wp1
+                                            USING(code)
+                                            WHERE wp.age = wp1.age AND w.power = w1.power)
+ORDER BY w.power DESC, wp.age DESC
+
