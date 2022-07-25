@@ -61,3 +61,6 @@ WHERE wp.is_evil = 0 AND w.coins_needed = (SELECT Min(w1.coins_needed)
                                             WHERE wp.age = wp1.age AND w.power = w1.power)
 ORDER BY w.power DESC, wp.age DESC
 
+--Interesting usage of Where
+WHERE country Like '%a%'
+
