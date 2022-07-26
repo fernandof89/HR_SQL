@@ -64,3 +64,16 @@ ORDER BY w.power DESC, wp.age DESC
 --Interesting usage of Where
 WHERE country Like '%a%'
 
+--Nice JOIN solution for changing a variable like the Sum of something (still trying to understand why name and score doesn't need a prefix) -> because is unique on the table
+SELECT h.hacker_id, name, sum(score) as total_score
+FROM Hackers as h INNER JOIN
+                        (SELECT hacker_id, max(score) as score
+                         FROM Submissions
+                         GROUP BY challenge_id, hacker_id
+                        ) max_score
+ON h.hacker_id = max_score.hacker_id
+GROUP BY h.hacker_id, name
+HAVING
+    total_score != 0
+ORDER BY total_score DESC, h.hacker_id
+
