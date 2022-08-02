@@ -78,7 +78,8 @@ HAVING
     total_score != 0
 ORDER BY total_score DESC, h.hacker_id
 
---Interesting use of WHERE NOT IN to Join Tables. Still don't understand why the are two tables at FROM without using joins.
+--Interesting use of WHERE NOT IN to Join Tables. Still don't understand why the are two tables at FROM without using joins. In this article it may be the answer to that: 
+https://learnsql.com/blog/sql-join-tables-without-join/#:~:text=Yes%2C%20Tables%20Can%20Be%20Joined%20Without%20the%20JOIN,other%20method%20is%20to%20write%20two%20SELECT%20statements.
 SELECT Start_Date, MIN(End_Date)
 FROM 
     (SELECT Start_Date 
