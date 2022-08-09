@@ -98,3 +98,11 @@ WHERE Start_Date < End_Date
 GROUP BY Start_Date
 ORDER BY DATEDIFF(MIN(End_Date), Start_Date) ASC, Start_Date ASC;
 
+--Simple Joins. Remember that INNER JOIN and JOIN are similar.
+SELECT S.Name
+FROM Students S JOIN Friends F USING(ID) 
+    JOIN Packages P1 USING(ID)
+    JOIN Packages P2 ON F.Friend_ID = P2.ID
+WHERE P2.Salary > P1.Salary
+ORDER BY P2.Salary
+
