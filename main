@@ -113,3 +113,7 @@ ON f1.X = f2.Y AND f1.Y = f2.X
 GROUP BY f1.X, f1.Y
 HAVING COUNT(f1.X)>1 OR f1.X < f1.Y
 ORDER BY f1.X
+
+--The GROUP_CONCAT() function in MySQL is used to concatenate data from multiple rows into one field. 
+--This is an aggregate (GROUP BY) function which returns a String value, if the group contains at least one non-NULL value. Otherwise, it returns NULL.
+--https://www.geeksforgeeks.org/mysql-group_concat-function/#:~:text=The%20GROUP_CONCAT%20%28%29%20function%20in%20MySQL%20is%20used,one%20non-%20NULL%20value.%20Otherwise%2C%20it%20returns%20NULL.
